@@ -10,7 +10,7 @@ logoFile="icon.png"
 displayName = "Trade Uses"
 authors = "Khajiitos"
 displayURL="https://github.com/Khajiitos/TradeUses"
-description = '''TODO'''
+description = '''Shows how many times you can use a trade before restock.'''
 displayTest = "IGNORE_ALL_VERSION"
 
 [[dependencies.tradeuses]]

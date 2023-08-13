@@ -3,7 +3,7 @@
   "id": "tradeuses",
   "version": "${version}",
   "name": "Trade Uses",
-  "description": "TODO",
+  "description": "Shows how many times you can use a trade before restock.",
   "authors": ["Khajiitos"],
   "license": "MIT",
   "icon": "icon.png",
