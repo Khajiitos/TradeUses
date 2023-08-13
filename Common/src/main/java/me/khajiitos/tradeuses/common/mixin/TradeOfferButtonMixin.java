@@ -26,7 +26,7 @@ import java.util.Optional;
 @Mixin(targets = {"net.minecraft.client.gui.screens.inventory.MerchantScreen$TradeOfferButton"})
 public abstract class TradeOfferButtonMixin extends Button {
     @Final
-    @Shadow(aliases = "field_19166", remap = false)
+    @Shadow(aliases = "field_19166")
     MerchantScreen this$0;
 
     @Final
