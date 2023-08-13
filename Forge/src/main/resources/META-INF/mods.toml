@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "MIT"
+issueTrackerURL = "https://github.com/Khajiitos/TradeUses/issues"
+
+[[mods]]
+modId = "tradeuses"
+version = "${version}"
+logoFile="icon.png"
+displayName = "Trade Uses"
+authors = "Khajiitos"
+displayURL="https://github.com/Khajiitos/TradeUses"
+description = '''TODO'''
+displayTest = "IGNORE_ALL_VERSION"
+
+[[dependencies.tradeuses]]
+modId = "forge"
+mandatory = true
+versionRange = "${forge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tradeuses]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"

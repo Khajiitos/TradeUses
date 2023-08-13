@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "tradeuses",
+  "version": "${version}",
+  "name": "Trade Uses",
+  "description": "TODO",
+  "authors": ["Khajiitos"],
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "client",
+  "contact": {
+    "homepage": "https://github.com/Khajiitos/TradeUses",
+    "sources": "https://github.com/Khajiitos/TradeUses",
+    "issues": "https://github.com/Khajiitos/TradeUses/issues"
+  },
+  "entrypoints": {
+    "client": [
+      "me.khajiitos.tradeuses.fabric.TradeUsesFabric"
+    ]
+  },
+  "mixins": [
+    "tradeuses.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "${minecraft_version_range}",
+    "java": ">=17"
+  }
+}
