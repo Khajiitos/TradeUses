@@ -46,14 +46,14 @@ public class ConfigScreen extends Screen {
         this.editBox.setMaxLength(256);
         this.editBox.setValue(value);
 
-        this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> this.onClose()).bounds(this.width / 2 - 100, this.height - 27, 200, 20).build());
-        this.copyColorCodeButton = this.addRenderableWidget(Button.builder(Component.literal("Copy color code character"), (button) -> {
+        this.addRenderableWidget(new Button(this.width / 2 - 100, this.height - 27, 200, 20, CommonComponents.GUI_DONE, (button) -> this.onClose()));
+        this.copyColorCodeButton = this.addRenderableWidget(new Button(this.width / 2 - 75, this.height / 2 + 15, 150, 20, Component.literal("Copy color code character"), (button) -> {
             if (this.minecraft != null) {
                 this.minecraft.keyboardHandler.setClipboard("§");
                 button.setMessage(Component.literal("Copied!"));
                 this.ticksUntilButtonRenamed = 30;
             }
-        }).pos(this.width / 2 - 75, this.height / 2 + 15).build());
+        }));
     }
 
     @Override

@@ -30,8 +30,8 @@ public abstract class TradeOfferButtonMixin extends Button {
     @Shadow
     int index;
 
-    protected TradeOfferButtonMixin(int $$0, int $$1, int $$2, int $$3, Component $$4, OnPress $$5, CreateNarration $$6) {
-        super($$0, $$1, $$2, $$3, $$4, $$5, $$6);
+    protected TradeOfferButtonMixin(int $$0, int $$1, int $$2, int $$3, Component $$4, OnPress $$5) {
+        super($$0, $$1, $$2, $$3, $$4, $$5);
     }
 
     @Inject(at = @At("HEAD"), method = "renderToolTip", cancellable = true)
@@ -44,17 +44,17 @@ public abstract class TradeOfferButtonMixin extends Button {
         Optional<TooltipComponent> tooltipImage = Optional.empty();
 
         if (this.isHovered && menu.getOffers().size() > this.index + scrollOff) {
-            if (mouseX < this.getX() + 20) {
+            if (mouseX < this.x + 20) {
                 ItemStack itemStack = offer.getCostA();
                 tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                 tooltipImage = itemStack.getTooltipImage();
-            } else if (mouseX < this.getX() + 50 && mouseX > this.getX() + 30) {
+            } else if (mouseX < this.x + 50 && mouseX > this.x + 30) {
                 ItemStack itemStack = offer.getCostB();
                 if (!itemStack.isEmpty()) {
                     tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                     tooltipImage = itemStack.getTooltipImage();
                 }
-            } else if (mouseX > this.getX() + 65) {
+            } else if (mouseX > this.x + 65) {
                 ItemStack itemStack = offer.getResult();
                 tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                 tooltipImage = itemStack.getTooltipImage();
