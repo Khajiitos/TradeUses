@@ -1,10 +1,10 @@
 package me.khajiitos.tradeuses.common.screen;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import joptsimple.internal.Strings;
 import me.khajiitos.tradeuses.common.config.Config;
 import me.khajiitos.tradeuses.common.screen.widget.EditBoxParagraphAllowed;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
@@ -57,11 +57,11 @@ public class ConfigScreen extends Screen {
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
+    public void render(@NotNull PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(poseStack);
+        super.render(poseStack, mouseX, mouseY, partialTick);
 
-        guiGraphics.drawString(this.font, "Placeholders: {uses}, {max_uses}, {uses_left}", 3, 3, 0xFF888888);
+        this.font.draw(poseStack, "Placeholders: {uses}, {max_uses}, {uses_left}", 3, 3, 0xFF888888);
 
         List<Component> preview = new ArrayList<>();
 
@@ -77,8 +77,8 @@ public class ConfigScreen extends Screen {
 
         int tooltipHeight = preview.size() * 10 + 10 + (preview.size() >= 2 ? 2 : 0);
 
-        guiGraphics.drawCenteredString(this.font, "Preview", this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
-        guiGraphics.renderTooltip(this.font, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
+        this.font.draw(poseStack, "Preview", this.width / 2.f, this.height / 2.f - tooltipHeight - 32, 0xFFFFFFFF);
+        this.renderTooltip(poseStack, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
     }
 
     @Override

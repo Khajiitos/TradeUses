@@ -1,11 +1,8 @@
 package me.khajiitos.tradeuses.common.mixin;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import me.khajiitos.tradeuses.common.config.Config;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.MerchantMenu;
@@ -38,11 +35,9 @@ public abstract class TradeOfferButtonMixin extends Button {
     }
 
     @Inject(at = @At("HEAD"), method = "renderToolTip", cancellable = true)
-    public void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, CallbackInfo ci) {
+    public void renderTooltip(PoseStack poseStack, int mouseX, int mouseY, CallbackInfo ci) {
         int scrollOff = ((MerchantScreenAccessor)this$0).getScrollOff();
         MerchantMenu menu = this$0.getMenu();
-        Font font = Minecraft.getInstance().font;
-        Minecraft minecraft = Minecraft.getInstance();
         MerchantOffer offer = menu.getOffers().get(this.index + scrollOff);
 
         List<Component> tooltipList = new ArrayList<>();
@@ -51,17 +46,17 @@ public abstract class TradeOfferButtonMixin extends Button {
         if (this.isHovered && menu.getOffers().size() > this.index + scrollOff) {
             if (mouseX < this.getX() + 20) {
                 ItemStack itemStack = offer.getCostA();
-                tooltipList.addAll(Screen.getTooltipFromItem(minecraft, itemStack));
+                tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                 tooltipImage = itemStack.getTooltipImage();
             } else if (mouseX < this.getX() + 50 && mouseX > this.getX() + 30) {
                 ItemStack itemStack = offer.getCostB();
                 if (!itemStack.isEmpty()) {
-                    tooltipList.addAll(Screen.getTooltipFromItem(minecraft, itemStack));
+                    tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                     tooltipImage = itemStack.getTooltipImage();
                 }
             } else if (mouseX > this.getX() + 65) {
                 ItemStack itemStack = offer.getResult();
-                tooltipList.addAll(Screen.getTooltipFromItem(minecraft, itemStack));
+                tooltipList.addAll(this$0.getTooltipFromItem(itemStack));
                 tooltipImage = itemStack.getTooltipImage();
             }
 
@@ -75,7 +70,7 @@ public abstract class TradeOfferButtonMixin extends Button {
                             .replace("{max_uses}", String.valueOf(offer.getMaxUses()))
             )));
 
-            guiGraphics.renderTooltip(font, tooltipList, tooltipImage, mouseX, mouseY);
+            this$0.renderTooltip(poseStack, tooltipList, tooltipImage, mouseX, mouseY);
         }
         
         ci.cancel();
