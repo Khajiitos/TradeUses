@@ -5,6 +5,7 @@ import joptsimple.internal.Strings;
 import me.khajiitos.tradeuses.common.config.Config;
 import me.khajiitos.tradeuses.common.screen.widget.EditBoxParagraphAllowed;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
@@ -78,7 +79,7 @@ public class ConfigScreen extends Screen {
 
         int tooltipHeight = preview.size() * 10 + 10 + (preview.size() >= 2 ? 2 : 0);
 
-        this.font.draw(poseStack, "Preview", this.width / 2.f, this.height / 2.f - tooltipHeight - 32, 0xFFFFFFFF);
+        GuiComponent.drawCenteredString(poseStack, this.font, "Preview", this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
         this.renderTooltip(poseStack, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
     }
 
