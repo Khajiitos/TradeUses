@@ -1,6 +1,7 @@
-package me.khajiitos.tradeuses.common;
+package me.khajiitos.tradeuses.common.config;
 
 import joptsimple.internal.Strings;
+import me.khajiitos.tradeuses.common.TradeUses;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,8 +11,10 @@ public class Config {
     public static final File file = new File("config/tradeuses_text.txt");
     public static List<String> lines = new ArrayList<>();
 
+    public static final String DEFAULT_TOOLTIP = "§lUses left: §r{uses_left}";
+
     static {
-        lines.add("§lUses left: §r{uses_left}");
+        lines.add(DEFAULT_TOOLTIP);
     }
 
     public static void load() {

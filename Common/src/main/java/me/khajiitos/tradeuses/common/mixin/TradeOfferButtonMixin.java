@@ -1,6 +1,6 @@
 package me.khajiitos.tradeuses.common.mixin;
 
-import me.khajiitos.tradeuses.common.Config;
+import me.khajiitos.tradeuses.common.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

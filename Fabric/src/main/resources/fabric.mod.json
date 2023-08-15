@@ -16,6 +16,9 @@
   "entrypoints": {
     "client": [
       "me.khajiitos.tradeuses.fabric.TradeUsesFabric"
+    ],
+    "modmenu": [
+      "me.khajiitos.tradeuses.fabric.ModMenuApiImpl"
     ]
   },
   "mixins": [
