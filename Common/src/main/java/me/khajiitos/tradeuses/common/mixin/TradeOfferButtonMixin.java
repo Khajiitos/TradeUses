@@ -5,6 +5,7 @@ import me.khajiitos.tradeuses.common.config.Config;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
@@ -61,10 +62,10 @@ public abstract class TradeOfferButtonMixin extends Button {
             }
 
             if (!tooltipList.isEmpty()) {
-                tooltipList.add(Component.empty());
+                tooltipList.add(new TextComponent(""));
             }
 
-            Config.lines.forEach(line -> tooltipList.add(Component.literal(
+            Config.lines.forEach(line -> tooltipList.add(new TextComponent(
                     line.replace("{uses_left}", String.valueOf(Math.max(0, offer.getMaxUses() - offer.getUses())))
                             .replace("{uses}", String.valueOf(offer.getUses()))
                             .replace("{max_uses}", String.valueOf(offer.getMaxUses()))

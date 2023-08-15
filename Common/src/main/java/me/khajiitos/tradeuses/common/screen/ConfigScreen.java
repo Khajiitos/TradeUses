@@ -9,6 +9,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -21,7 +22,7 @@ public class ConfigScreen extends Screen {
     private int ticksUntilButtonRenamed;
 
     public ConfigScreen(Screen parent) {
-        super(Component.literal("Trade Uses Config"));
+        super(new TextComponent("Trade Uses Config"));
         this.parent = parent;
         this.originalValue = Strings.join(Config.lines, "\\n");
     }
@@ -41,16 +42,16 @@ public class ConfigScreen extends Screen {
                 this.height / 2 - 10,
                 200,
                 20,
-                Component.literal("Tooltip text"))
+                new TextComponent("Tooltip text"))
         );
         this.editBox.setMaxLength(256);
         this.editBox.setValue(value);
 
         this.addRenderableWidget(new Button(this.width / 2 - 100, this.height - 27, 200, 20, CommonComponents.GUI_DONE, (button) -> this.onClose()));
-        this.copyColorCodeButton = this.addRenderableWidget(new Button(this.width / 2 - 75, this.height / 2 + 15, 150, 20, Component.literal("Copy color code character"), (button) -> {
+        this.copyColorCodeButton = this.addRenderableWidget(new Button(this.width / 2 - 75, this.height / 2 + 15, 150, 20, new TextComponent("Copy color code character"), (button) -> {
             if (this.minecraft != null) {
                 this.minecraft.keyboardHandler.setClipboard("§");
-                button.setMessage(Component.literal("Copied!"));
+                button.setMessage(new TextComponent("Copied!"));
                 this.ticksUntilButtonRenamed = 30;
             }
         }));
@@ -66,7 +67,7 @@ public class ConfigScreen extends Screen {
         List<Component> preview = new ArrayList<>();
 
         for (String line : this.editBox.getValue().split("\\\\n")) {
-            preview.add(Component.literal(line
+            preview.add(new TextComponent(line
                     .replace("{uses}", "0")
                     .replace("{max_uses}", "12")
                     .replace("{uses_left}", "12")
@@ -84,7 +85,7 @@ public class ConfigScreen extends Screen {
     @Override
     public void tick() {
         if (this.ticksUntilButtonRenamed > 0 && --this.ticksUntilButtonRenamed == 0) {
-            this.copyColorCodeButton.setMessage(Component.literal("Copy color code character"));
+            this.copyColorCodeButton.setMessage(new TextComponent("Copy color code character"));
         }
     }
 
