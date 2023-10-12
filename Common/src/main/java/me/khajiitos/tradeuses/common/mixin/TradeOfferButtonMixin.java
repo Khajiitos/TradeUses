@@ -69,7 +69,7 @@ public abstract class TradeOfferButtonMixin extends Button {
                 tooltipList.add(Component.empty());
             }
 
-            Config.lines.forEach(line -> tooltipList.add(Component.literal(
+            Config.getDisplayLines().forEach(line -> tooltipList.add(Component.literal(
                     line.replace("{uses_left}", String.valueOf(Math.max(0, offer.getMaxUses() - offer.getUses())))
                             .replace("{uses}", String.valueOf(offer.getUses()))
                             .replace("{max_uses}", String.valueOf(offer.getMaxUses()))
