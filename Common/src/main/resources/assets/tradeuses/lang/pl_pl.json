@@ -1,0 +1,9 @@
+{
+  "tradeuses.default_tooltip": "§lPozostało użyć: §r{uses_left}",
+  "tradeuses.placeholders": "Symbole: {uses}, {max_uses}, {uses_left}",
+  "tradeuses.preview": "Podgląd",
+  "tradeuses.copy_color_code_char": "Kopiuj znak kodu koloru",
+  "tradeuses.copied": "Skopiowano!",
+  "tradeuses.tradeuses_config": "Trade Uses - Konfiguracja",
+  "tradeuses.tooltip_text": "Tekst"
+}

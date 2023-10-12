@@ -7,8 +7,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.util.FormattedCharSequence;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -21,9 +24,9 @@ public class ConfigScreen extends Screen {
     private int ticksUntilButtonRenamed;
 
     public ConfigScreen(Screen parent) {
-        super(Component.literal("Trade Uses Config"));
+        super(Component.translatable("tradeuses.tradeuses_config"));
         this.parent = parent;
-        this.originalValue = Strings.join(Config.lines, "\\n");
+        this.originalValue = Config.lines.isEmpty() ? I18n.get("tradeuses.default_tooltip") : Strings.join(Config.lines, "\\n");
     }
 
     public ConfigScreen(Minecraft minecraft, Screen parent) {
@@ -41,16 +44,17 @@ public class ConfigScreen extends Screen {
                 this.height / 2 - 10,
                 200,
                 20,
-                Component.literal("Tooltip text"))
+                Component.translatable("tradeuses.tooltip_text"))
         );
+        this.editBox.setFormatter((text, i) -> FormattedCharSequence.forward(text, Style.EMPTY.withItalic(this.editBox.getValue().equals(I18n.get("tradeuses.default_tooltip")))));
         this.editBox.setMaxLength(256);
         this.editBox.setValue(value);
 
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> this.onClose()).bounds(this.width / 2 - 100, this.height - 27, 200, 20).build());
-        this.copyColorCodeButton = this.addRenderableWidget(Button.builder(Component.literal("Copy color code character"), (button) -> {
+        this.copyColorCodeButton = this.addRenderableWidget(Button.builder(Component.translatable("tradeuses.copy_color_code_char"), (button) -> {
             if (this.minecraft != null) {
                 this.minecraft.keyboardHandler.setClipboard("§");
-                button.setMessage(Component.literal("Copied!"));
+                button.setMessage(Component.translatable("tradeuses.copied"));
                 this.ticksUntilButtonRenamed = 30;
             }
         }).pos(this.width / 2 - 75, this.height / 2 + 15).build());
@@ -61,7 +65,7 @@ public class ConfigScreen extends Screen {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
 
-        guiGraphics.drawString(this.font, "Placeholders: {uses}, {max_uses}, {uses_left}", 3, 3, 0xFF888888);
+        guiGraphics.drawString(this.font, Component.translatable("tradeuses.placeholders"), 3, 3, 0xFF888888);
 
         List<Component> preview = new ArrayList<>();
 
@@ -77,14 +81,14 @@ public class ConfigScreen extends Screen {
 
         int tooltipHeight = preview.size() * 10 + 10 + (preview.size() >= 2 ? 2 : 0);
 
-        guiGraphics.drawCenteredString(this.font, "Preview", this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
+        guiGraphics.drawCenteredString(this.font, Component.translatable("tradeuses.preview"), this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
         guiGraphics.renderTooltip(this.font, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
     }
 
     @Override
     public void tick() {
         if (this.ticksUntilButtonRenamed > 0 && --this.ticksUntilButtonRenamed == 0) {
-            this.copyColorCodeButton.setMessage(Component.literal("Copy color code character"));
+            this.copyColorCodeButton.setMessage(Component.translatable("tradeuses.copy_color_code_char"));
         }
     }
 
@@ -96,7 +100,11 @@ public class ConfigScreen extends Screen {
 
         if (!this.originalValue.equals(this.editBox.getValue())) {
             Config.lines.clear();
-            Config.lines.addAll(Arrays.asList(this.editBox.getValue().split("\\\\n")));
+
+            if (!this.editBox.getValue().isEmpty() && !this.editBox.getValue().equals(I18n.get("tradeuses.default_tooltip"))) {
+                Config.lines.addAll(Arrays.asList(this.editBox.getValue().split("\\\\n")));
+            }
+
             Config.save();
         }
     }
