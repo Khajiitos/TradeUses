@@ -2,6 +2,7 @@ package me.khajiitos.tradeuses.common.config;
 
 import joptsimple.internal.Strings;
 import me.khajiitos.tradeuses.common.TradeUses;
+import net.minecraft.client.resources.language.I18n;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -12,10 +13,13 @@ public class Config {
     public static final File file = new File("config/tradeuses_text.txt");
     public static List<String> lines = new ArrayList<>();
 
-    public static final String DEFAULT_TOOLTIP = "§lUses left: §r{uses_left}";
-
-    static {
-        lines.add(DEFAULT_TOOLTIP);
+    public static List<String> getDisplayLines() {
+        List<String> configLines = lines;
+        if (configLines.isEmpty()) {
+            return List.of(I18n.get("tradeuses.default_tooltip").split("\n"));
+        } else {
+            return lines;
+        }
     }
 
     public static void load() {
