@@ -1,0 +1,9 @@
+{
+  "tradeuses.default_tooltip": "§l剩余交易次数：§r{uses_left}",
+  "tradeuses.placeholders": "占位符：{uses}，{max_uses}，{uses_left}",
+  "tradeuses.preview": "预览",
+  "tradeuses.copy_color_code_char": "复制颜色代码字符",
+  "tradeuses.copied": "已复制！",
+  "tradeuses.tradeuses_config": "Trade Uses配置",
+  "tradeuses.tooltip_text": "工具提示文本"
+}
