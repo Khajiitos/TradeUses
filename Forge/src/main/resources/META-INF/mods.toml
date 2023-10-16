@@ -6,9 +6,10 @@ issueTrackerURL = "https://github.com/Khajiitos/TradeUses/issues"
 [[mods]]
 modId = "tradeuses"
 version = "${version}"
-logoFile="icon.png"
+logoFile = "icon.png"
 displayName = "Trade Uses"
 authors = "Khajiitos"
+credits = "qznfbnj"
 displayURL="https://github.com/Khajiitos/TradeUses"
 description = '''Shows how many times you can use a trade before restock.'''
 displayTest = "IGNORE_ALL_VERSION"
