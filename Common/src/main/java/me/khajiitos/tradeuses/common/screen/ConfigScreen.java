@@ -58,7 +58,7 @@ public class ConfigScreen extends Screen {
                 button.setMessage(Component.translatable("tradeuses.copied"));
                 this.ticksUntilButtonRenamed = 30;
             }
-        }).pos(this.width / 2 - 75, this.height / 2 + 15).build());
+        }).bounds(this.width / 2 - 100, this.height / 2 + 15, 200, 20).build());
     }
 
     @Override
