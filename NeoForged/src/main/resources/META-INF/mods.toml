@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "${neo_loader_version_range}"
+license = "MIT"
+issueTrackerURL = "https://github.com/Khajiitos/TradeUses/issues"
+
+[[mixins]]
+config="tradeuses.mixins.json"
+
+[[mods]]
+modId = "tradeuses"
+version = "${version}"
+logoFile = "icon.png"
+displayName = "Trade Uses"
+authors = "Khajiitos"
+credits = "qznfbnj, Encore"
+displayURL="https://github.com/Khajiitos/TradeUses"
+description = '''Shows how many times you can use a trade before restock.'''
+displayTest = "IGNORE_ALL_VERSION"
+
+[[dependencies.tradeuses]]
+modId = "neoforge"
+mandatory = true
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.tradeuses]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
