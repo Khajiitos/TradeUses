@@ -4,7 +4,7 @@
   "package": "me.khajiitos.tradeuses.common.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "EditBoxMixin",
+    "EditBoxAccessor",
     "LanguageManagerMixin",
     "MerchantScreenAccessor",
     "TradeOfferButtonMixin"
