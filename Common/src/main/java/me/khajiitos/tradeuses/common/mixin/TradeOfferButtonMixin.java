@@ -41,6 +41,11 @@ public abstract class TradeOfferButtonMixin extends Button {
     public void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, CallbackInfo ci) {
         int scrollOff = ((MerchantScreenAccessor)this$0).getScrollOff();
         MerchantMenu menu = this$0.getMenu();
+
+        if (this.index + scrollOff >= menu.getOffers().size()) {
+            return;
+        }
+
         Font font = Minecraft.getInstance().font;
         Minecraft minecraft = Minecraft.getInstance();
         MerchantOffer offer = menu.getOffers().get(this.index + scrollOff);
@@ -48,7 +53,7 @@ public abstract class TradeOfferButtonMixin extends Button {
         List<Component> tooltipList = new ArrayList<>();
         Optional<TooltipComponent> tooltipImage = Optional.empty();
 
-        if (this.isHovered && menu.getOffers().size() > this.index + scrollOff) {
+        if (this.isHovered) {
             if (mouseX < this.getX() + 20) {
                 ItemStack itemStack = offer.getCostA();
                 tooltipList.addAll(Screen.getTooltipFromItem(minecraft, itemStack));
