@@ -5,6 +5,8 @@ import net.minecraft.SharedConstants;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.StringUtil;
+
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
@@ -27,7 +29,7 @@ public class EditBoxParagraphAllowed extends EditBox {
         StringBuilder stringBuilder = new StringBuilder();
 
         for(char c : str.toCharArray()) {
-            if (c == '§' || SharedConstants.isAllowedChatCharacter(c)) {
+            if (c == '§' || StringUtil.isAllowedChatCharacter(c)) {
                 stringBuilder.append(c);
             }
         }
@@ -39,7 +41,7 @@ public class EditBoxParagraphAllowed extends EditBox {
     public boolean charTyped(char c, int i) {
         if (!this.canConsumeInput()) {
             return false;
-        } else if (c == '§' || SharedConstants.isAllowedChatCharacter(c)) {
+        } else if (c == '§' || StringUtil.isAllowedChatCharacter(c)) {
             this.insertText(Character.toString(c));
             return true;
         } else {
