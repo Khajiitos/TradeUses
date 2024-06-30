@@ -49,6 +49,7 @@ public class ConfigScreen extends Screen {
         this.editBox.setFormatter((text, i) -> FormattedCharSequence.forward(text, Style.EMPTY.withItalic(this.editBox.getValue().equals(I18n.get("tradeuses.default_tooltip")))));
         this.editBox.setMaxLength(256);
         this.editBox.setValue(value);
+        this.setInitialFocus(this.editBox);
 
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> this.onClose()).bounds(this.width / 2 - 100, this.height - 27, 200, 20).build());
         this.copyColorCodeButton = this.addRenderableWidget(Button.builder(Component.translatable("tradeuses.copy_color_code_char"), (button) -> {

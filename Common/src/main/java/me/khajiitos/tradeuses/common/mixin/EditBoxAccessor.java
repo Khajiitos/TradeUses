@@ -24,8 +24,8 @@ public interface EditBoxAccessor {
     @Accessor
     Predicate<String> getFilter();
 
-    @Accessor
-    void setValue(String value);
+    @Invoker
+    void callSetValue(String value);
 
     @Invoker
     void callOnValueChange(String $$0);
