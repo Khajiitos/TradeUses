@@ -8,14 +8,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-import java.util.function.Supplier;
-
 @Mod(TradeUses.MOD_ID)
 public class TradeUsesNeoforged {
     public TradeUsesNeoforged(ModContainer modContainer) {
         if (FMLLoader.getDist() == Dist.CLIENT) {
             TradeUses.init();
-            modContainer.registerExtensionPoint(IConfigScreenFactory.class, (Supplier<IConfigScreenFactory>) () -> (IConfigScreenFactory) ConfigScreen::new);
+            modContainer.registerExtensionPoint(IConfigScreenFactory.class, (container, parent) -> new ConfigScreen(parent));
         }
     }
 }
