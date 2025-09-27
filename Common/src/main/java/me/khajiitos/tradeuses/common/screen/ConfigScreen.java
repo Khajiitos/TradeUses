@@ -63,7 +63,7 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+        //this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
 
         guiGraphics.drawString(this.font, Component.translatable("tradeuses.placeholders"), 3, 3, 0xFF888888);
@@ -83,7 +83,7 @@ public class ConfigScreen extends Screen {
         int tooltipHeight = preview.size() * 10 + 10 + (preview.size() >= 2 ? 2 : 0);
 
         guiGraphics.drawCenteredString(this.font, Component.translatable("tradeuses.preview"), this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
-        guiGraphics.renderTooltip(this.font, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
+        guiGraphics.setTooltipForNextFrame(this.font, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
     }
 
     @Override

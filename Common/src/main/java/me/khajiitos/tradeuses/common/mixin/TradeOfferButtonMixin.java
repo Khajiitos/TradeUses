@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -80,7 +81,7 @@ public abstract class TradeOfferButtonMixin extends Button {
                             .replace("{max_uses}", String.valueOf(offer.getMaxUses()))
             )));
 
-            guiGraphics.renderTooltip(font, tooltipList, tooltipImage, mouseX, mouseY);
+            guiGraphics.setTooltipForNextFrame(font, tooltipList, tooltipImage, mouseX, mouseY, offer.getResult().get(DataComponents.TOOLTIP_STYLE));
         }
         
         ci.cancel();
