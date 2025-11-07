@@ -29,11 +29,6 @@ public class ConfigScreen extends Screen {
         this.originalValue = Config.lines.isEmpty() ? I18n.get("tradeuses.default_tooltip") : Strings.join(Config.lines, "\\n");
     }
 
-    public ConfigScreen(Minecraft minecraft, Screen parent) {
-        this(parent);
-        this.minecraft = minecraft;
-    }
-
     @Override
     protected void init() {
         String value = this.editBox != null ? this.editBox.getValue() : originalValue;
@@ -46,7 +41,7 @@ public class ConfigScreen extends Screen {
                 20,
                 Component.translatable("tradeuses.tooltip_text"))
         );
-        this.editBox.setFormatter((text, i) -> FormattedCharSequence.forward(text, Style.EMPTY.withItalic(this.editBox.getValue().equals(I18n.get("tradeuses.default_tooltip")))));
+        this.editBox.addFormatter((text, i) -> FormattedCharSequence.forward(text, Style.EMPTY.withItalic(this.editBox.getValue().equals(I18n.get("tradeuses.default_tooltip")))));
         this.editBox.setMaxLength(256);
         this.editBox.setValue(value);
         this.setInitialFocus(this.editBox);
