@@ -1,0 +1,10 @@
+{
+  "tradeuses.default_tooltip": "§lТоргів залишилося: §r{uses_left}",
+  "tradeuses.placeholders": "Заповнювачі: {uses}, {max_uses}, {uses_left}",
+  "tradeuses.preview": "Попередній перегляд",
+  "tradeuses.copy_color_code_char": "Копіювати кольоровий код символу",
+  "tradeuses.copied": "Скопійовано!",
+  "tradeuses.tradeuses_config": "Налаштувнаня Trade Uses",
+  "tradeuses.tooltip_text": "Ткст підказки",
+  "modmenu.descriptionTranslation.tradeuses": "Показує, скільки разів ви можете використовувати торг до поповнення"
+}
