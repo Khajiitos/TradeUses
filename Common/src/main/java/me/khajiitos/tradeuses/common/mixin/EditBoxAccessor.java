@@ -5,8 +5,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-import java.util.function.Predicate;
-
 @Mixin(EditBox.class)
 public interface EditBoxAccessor {
     @Accessor
@@ -20,9 +18,6 @@ public interface EditBoxAccessor {
 
     @Accessor
     String getValue();
-
-    @Accessor
-    Predicate<String> getFilter();
 
     @Invoker
     void callSetValue(String value);

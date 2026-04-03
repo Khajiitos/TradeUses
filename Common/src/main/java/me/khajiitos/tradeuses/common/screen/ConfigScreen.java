@@ -4,7 +4,7 @@ import joptsimple.internal.Strings;
 import me.khajiitos.tradeuses.common.config.Config;
 import me.khajiitos.tradeuses.common.screen.widget.EditBoxParagraphAllowed;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
@@ -48,20 +48,17 @@ public class ConfigScreen extends Screen {
 
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> this.onClose()).bounds(this.width / 2 - 100, this.height - 27, 200, 20).build());
         this.copyColorCodeButton = this.addRenderableWidget(Button.builder(Component.translatable("tradeuses.copy_color_code_char"), (button) -> {
-            if (this.minecraft != null) {
-                this.minecraft.keyboardHandler.setClipboard("§");
-                button.setMessage(Component.translatable("tradeuses.copied"));
-                this.ticksUntilButtonRenamed = 30;
-            }
+            this.minecraft.keyboardHandler.setClipboard("§");
+            button.setMessage(Component.translatable("tradeuses.copied"));
+            this.ticksUntilButtonRenamed = 30;
         }).bounds(this.width / 2 - 100, this.height / 2 + 15, 200, 20).build());
     }
 
     @Override
-    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        //this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
+    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.extractRenderState(guiGraphics, mouseX, mouseY, partialTick);
 
-        guiGraphics.drawString(this.font, Component.translatable("tradeuses.placeholders"), 3, 3, 0xFF888888);
+        guiGraphics.text(this.font, Component.translatable("tradeuses.placeholders"), 3, 3, 0xFF888888);
 
         List<Component> preview = new ArrayList<>();
 
@@ -77,7 +74,7 @@ public class ConfigScreen extends Screen {
 
         int tooltipHeight = preview.size() * 10 + 10 + (preview.size() >= 2 ? 2 : 0);
 
-        guiGraphics.drawCenteredString(this.font, Component.translatable("tradeuses.preview"), this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
+        guiGraphics.centeredText(this.font, Component.translatable("tradeuses.preview"), this.width / 2, this.height / 2 - tooltipHeight - 32, 0xFFFFFFFF);
         guiGraphics.setTooltipForNextFrame(this.font, preview, Optional.empty(), (this.width - tooltipWidth) / 2 - 8, this.height / 2 - tooltipHeight - 5);
     }
 
@@ -90,9 +87,7 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void onClose() {
-        if (this.minecraft != null) {
-            this.minecraft.setScreen(parent);
-        }
+        this.minecraft.setScreen(parent);
 
         if (!this.originalValue.equals(this.editBox.getValue())) {
             Config.lines.clear();

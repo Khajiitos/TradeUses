@@ -63,11 +63,9 @@ public class EditBoxParagraphAllowed extends EditBox {
         }
 
         String newValue = (new StringBuilder(accessor.getValue())).replace(selectionStart, selectionEnd, filteredText).toString();
-        if (accessor.getFilter().test(newValue)) {
-            accessor.callSetValue(newValue);
-            this.setCursorPosition(selectionStart + filteredTextLength);
-            this.setHighlightPos(accessor.getCursorPos());
-            accessor.callOnValueChange(accessor.getValue());
-        }
+        accessor.callSetValue(newValue);
+        this.setCursorPosition(selectionStart + filteredTextLength);
+        this.setHighlightPos(accessor.getCursorPos());
+        accessor.callOnValueChange(accessor.getValue());
     }
 }

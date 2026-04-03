@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LanguageManager.class)
 public class LanguageManagerMixin {
 
-    @Inject(at = @At("TAIL"), method = "onResourceManagerReload")
+    @Inject(at = @At("TAIL"), method = "onResourceManagerReload", remap = false)
     public void onLanguageReload(ResourceManager resourceManager, CallbackInfo ci) {
         if (Strings.join(Config.lines.toArray(new String[0]), "\n").equals(I18n.get("tradeuses.default_tooltip"))) {
             Config.lines.clear();

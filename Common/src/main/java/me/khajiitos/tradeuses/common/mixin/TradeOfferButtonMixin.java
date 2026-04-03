@@ -3,7 +3,7 @@ package me.khajiitos.tradeuses.common.mixin;
 import me.khajiitos.tradeuses.common.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MerchantScreen;
@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Mixin(targets = {"net.minecraft.client.gui.screens.inventory.MerchantScreen$TradeOfferButton"})
-public abstract class TradeOfferButtonMixin extends Button {
+@Mixin(targets = {"net.minecraft.client.gui.screens.inventory.MerchantScreen$TradeOfferButton"}, remap = false)
+public abstract class TradeOfferButtonMixin extends Button.Plain {
     @Final
     @Shadow(aliases = "field_19166")
     MerchantScreen this$0;
@@ -38,11 +38,10 @@ public abstract class TradeOfferButtonMixin extends Button {
         super($$0, $$1, $$2, $$3, $$4, $$5, $$6);
     }
 
-    @Inject(at = @At("HEAD"), method = "renderToolTip", cancellable = true)
-    public void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, CallbackInfo ci) {
+    @Inject(at = @At("HEAD"), method = "extractToolTip", cancellable = true, remap = false)
+    public void extractTooltip(GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, CallbackInfo ci) {
         int scrollOff = ((MerchantScreenAccessor)this$0).getScrollOff();
         MerchantMenu menu = this$0.getMenu();
-
         if (this.index + scrollOff >= menu.getOffers().size()) {
             return;
         }

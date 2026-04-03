@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "me.khajiitos.tradeuses.common.mixin",
-  "compatibilityLevel": "JAVA_18",
+  "compatibilityLevel": "JAVA_25",
   "client": [
     "EditBoxAccessor",
     "LanguageManagerMixin",
